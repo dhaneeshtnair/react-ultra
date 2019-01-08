@@ -1,13 +1,5 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import Button from "@material-ui/core/Button";
+import Paperbase from "./Paperbase";
 
-function App() {
-  return (
-    <Button variant="contained" color="primary">
-      Hello World
-    </Button>
-  );
-}
-
-ReactDOM.render(<App />, document.querySelector("#app"));
+ReactDOM.render(<Paperbase />, document.querySelector("#app"));
