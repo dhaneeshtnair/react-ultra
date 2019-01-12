@@ -10,6 +10,8 @@ import Hidden from "@material-ui/core/Hidden";
 import Navigator from "./Navigator";
 import Content from "./Content";
 import Header from "./Header";
+import { Link, Route, withRouter, BrowserRouter } from "react-router-dom";
+import { compose } from "recompose";
 
 let theme = createMuiTheme({
   typography: {
@@ -161,34 +163,48 @@ class Paperbase extends React.Component {
     this.setState(state => ({ mobileOpen: !state.mobileOpen }));
   };
 
+  handleClick = ob => {
+    this.setState(state => ({ mobileOpen: !state.mobileOpen }));
+  };
+
+  navItemClick = clickId => {
+    alert("navclick : " + JSON.stringify(clickId));
+  };
   render() {
     const { classes } = this.props;
 
     return (
-      <MuiThemeProvider theme={theme}>
-        <div className={classes.root}>
-          <CssBaseline />
-          <nav className={classes.drawer}>
-            <Hidden smUp implementation="js">
-              <Navigator
-                PaperProps={{ style: { width: drawerWidth } }}
-                variant="temporary"
-                open={this.state.mobileOpen}
-                onClose={this.handleDrawerToggle}
-              />
-            </Hidden>
-            <Hidden xsDown implementation="css">
-              <Navigator PaperProps={{ style: { width: drawerWidth } }} />
-            </Hidden>
-          </nav>
-          <div className={classes.appContent}>
-            <Header onDrawerToggle={this.handleDrawerToggle} />
-            <main className={classes.mainContent}>
-              <Content />
-            </main>
+      <BrowserRouter>
+        <MuiThemeProvider theme={theme}>
+          <div className={classes.root}>
+            <CssBaseline />
+            <nav className={classes.drawer}>
+              <Hidden smUp implementation="js">
+                <Navigator
+                  navItemClick={this.navItemClick}
+                  PaperProps={{ style: { width: drawerWidth } }}
+                  variant="temporary"
+                  open={this.state.mobileOpen}
+                  onClick={this.handleClick}
+                  onClose={this.handleDrawerToggle}
+                />
+              </Hidden>
+              <Hidden xsDown implementation="css">
+                <Navigator PaperProps={{ style: { width: drawerWidth } }} />
+              </Hidden>
+            </nav>
+            <div className={classes.appContent}>
+              <Header onDrawerToggle={this.handleDrawerToggle} />
+              <main className={classes.mainContent}>
+                <Route
+                  path={"/Storage"}
+                  render={props => <Content {...props} />}
+                />
+              </main>
+            </div>
           </div>
-        </div>
-      </MuiThemeProvider>
+        </MuiThemeProvider>
+      </BrowserRouter>
     );
   }
 }
@@ -196,5 +212,4 @@ class Paperbase extends React.Component {
 Paperbase.propTypes = {
   classes: PropTypes.object.isRequired
 };
-
-export default withStyles(styles)(Paperbase);
+export default compose(withStyles(styles))(Paperbase);

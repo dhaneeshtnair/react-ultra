@@ -9,7 +9,10 @@
     "@material-ui/core": "latest",
     "@material-ui/icons": "3.0.2",
     "react": "latest",
-    "react-dom": "latest"
+    "react-dom": "latest",
+    "react-router": "latest",
+    "react-router-dom": "latest",
+    "recompose": "latest"
   },
   "devDependencies": {
     "react-scripts": "1.0.0"

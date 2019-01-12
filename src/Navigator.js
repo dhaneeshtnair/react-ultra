@@ -18,7 +18,8 @@ import SettingsInputComponentIcon from "@material-ui/icons/SettingsInputComponen
 import TimerIcon from "@material-ui/icons/Timer";
 import SettingsIcon from "@material-ui/icons/Settings";
 import PhonelinkSetupIcon from "@material-ui/icons/PhonelinkSetup";
-
+import { browserHistory } from "react-router";
+import { Link, Route } from "react-router-dom";
 const categories = [
   {
     id: "Develop",
@@ -86,72 +87,99 @@ const styles = theme => ({
   }
 });
 
-function Navigator(props) {
-  const { classes, ...other } = props;
+class Navigator extends React.Component {
+  state = {
+    mobileOpen: true,
+    categories: categories,
+    open: false
+  };
 
-  return (
-    <Drawer variant="permanent" {...other}>
-      <List disablePadding>
-        <ListItem
-          className={classNames(
-            classes.firebase,
-            classes.item,
-            classes.itemCategory
-          )}
-        >
-          Paperbase
-        </ListItem>
-        <ListItem className={classNames(classes.item, classes.itemCategory)}>
-          <ListItemIcon>
-            <HomeIcon />
-          </ListItemIcon>
-          <ListItemText
-            classes={{
-              primary: classes.itemPrimary
-            }}
+  handleClick = childId => {
+    this.setState(state => ({
+      mobileOpen: false,
+      open: false
+    }));
+  };
+
+  render() {
+    //function Navigator(props) {
+    const { navItemClick, classes, ...other } = this.props;
+
+    return (
+      <Drawer variant="permanent" {...other}>
+        <List disablePadding>
+          <ListItem
+            className={classNames(
+              classes.firebase,
+              classes.item,
+              classes.itemCategory
+            )}
           >
-            Project Overview
-          </ListItemText>
-        </ListItem>
-        {categories.map(({ id, children }) => (
-          <React.Fragment key={id}>
-            <ListItem className={classes.categoryHeader}>
-              <ListItemText
-                classes={{
-                  primary: classes.categoryHeaderPrimary
-                }}
-              >
-                {id}
-              </ListItemText>
-            </ListItem>
-            {children.map(({ id: childId, icon, active }) => (
-              <ListItem
-                button
-                dense
-                key={childId}
-                className={classNames(
-                  classes.item,
-                  classes.itemActionable,
-                  active && classes.itemActiveItem
-                )}
-              >
-                <ListItemIcon>{icon}</ListItemIcon>
+            Paperbase
+          </ListItem>
+          <ListItem className={classNames(classes.item, classes.itemCategory)}>
+            <ListItemIcon>
+              <HomeIcon />
+            </ListItemIcon>
+            <ListItemText
+              classes={{
+                primary: classes.itemPrimary
+              }}
+            >
+              Project Overview
+            </ListItemText>
+          </ListItem>
+          {this.state.categories.map(({ id, children }) => (
+            <React.Fragment key={id}>
+              <ListItem className={classes.categoryHeader}>
                 <ListItemText
                   classes={{
-                    primary: classes.itemPrimary,
-                    textDense: classes.textDense
+                    primary: classes.categoryHeaderPrimary
                   }}
                 >
-                  {childId}
+                  {id}
                 </ListItemText>
               </ListItem>
-            ))}
-            <Divider className={classes.divider} />
-          </React.Fragment>
-        ))}
-      </List>
-    </Drawer>
-  );
+              {children.map(({ id: childId, icon, active }) => (
+                <ListItem
+                  button
+                  dense
+                  key={childId}
+                  onClick={() => {
+                    this.setState(state => ({
+                      mobileOpen: false,
+                      open: !this.state.open
+                    }));
+                    navItemClick({ childId });
+                    this.state[childId] = true;
+                    //browserHistory.push("/aaa");
+                  }}
+                  className={classNames(
+                    classes.item,
+                    classes.itemActionable,
+                    this.state[childId] && classes.itemActiveItem
+                  )}
+                  component={Link}
+                  to={`/${childId}`}
+                >
+                  <ListItemIcon>{icon}</ListItemIcon>
+                  <ListItemText
+                    classes={{
+                      primary: classes.itemPrimary,
+                      textDense: classes.textDense
+                    }}
+                  >
+                    {childId}
+                  </ListItemText>
+                </ListItem>
+              ))}
+              <Divider className={classes.divider} />
+            </React.Fragment>
+          ))}
+        </List>
+      </Drawer>
+    );
+  }
 }
 
 Navigator.propTypes = {
