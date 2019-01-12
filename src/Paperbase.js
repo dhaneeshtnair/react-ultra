@@ -219,6 +219,10 @@ class Paperbase extends React.Component {
               <main className={classes.mainContent}>
                 <Switch>
                   <Route
+                    path={"/dashboard/Checkout"}
+                    render={props => <Checkout {...props} />}
+                  />
+                  <Route
                     path={"/dashboard/Storage"}
                     render={props => <Content {...props} />}
                   />

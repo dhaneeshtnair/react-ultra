@@ -73,6 +73,7 @@ class Students extends React.Component {
       filterType: "dropdown",
       responsive: "scroll"
     };
+    const MyLink = props => <Link to="/dashboard/Checkout" {...props} />;
 
     return (
       <React.Fragment>
@@ -82,7 +83,11 @@ class Students extends React.Component {
           <Grid container spacing={24}>
             <Grid item xs={8} />
             <Grid item xs={4}>
-              <Button variant="contained" className={classes.fr}>
+              <Button
+                variant="contained"
+                className={classes.fr}
+                component={MyLink}
+              >
                 <NewIcon
                   className={classNames(classes.rightIcon, classes.iconSmall)}
                 />
