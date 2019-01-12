@@ -1,18 +1,15 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import MUIDataTable from "mui-datatables";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Switch from "@material-ui/core/Switch";
 import Button from "@material-ui/core/Button";
 import EditIcon from "@material-ui/icons/Edit";
+import NewIcon from "@material-ui/icons/Add";
 import FormControl from "@material-ui/core/FormControl";
-
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
-import Cities from "../datatables/Cities";
 import { Link, Route } from "react-router-dom";
 import classNames from "classnames";
-import SaveIcon from "@material-ui/icons/Save";
+import Grid from "@material-ui/core/Grid";
+import CssBaseline from "@material-ui/core/CssBaseline";
 
 const styles = theme => ({
   button: {
@@ -26,6 +23,9 @@ const styles = theme => ({
   },
   iconSmall: {
     fontSize: 20
+  },
+  fr: {
+    float: "right"
   }
 });
 
@@ -75,12 +75,31 @@ class Students extends React.Component {
     };
 
     return (
-      <MUIDataTable
-        title={"Students List"}
-        data={data}
-        columns={columns}
-        options={options}
-      />
+      <React.Fragment>
+        <CssBaseline />
+
+        <div className={classes.contentWrapper}>
+          <Grid container spacing={24}>
+            <Grid item xs={8} />
+            <Grid item xs={4}>
+              <Button variant="contained" className={classes.fr}>
+                <NewIcon
+                  className={classNames(classes.rightIcon, classes.iconSmall)}
+                />
+                Add Student
+              </Button>
+            </Grid>
+          </Grid>
+          <br />
+
+          <MUIDataTable
+            title={"Students List"}
+            data={data}
+            columns={columns}
+            options={options}
+          />
+        </div>
+      </React.Fragment>
     );
   }
 }
