@@ -9,7 +9,7 @@ export default class extends Component {
         <Switch>
           <Route
             exact
-            path="/dashboard/*"
+            path="/dashboard*"
             render={props => <Paperbase {...props} />}
           />
           <Route path="/" render={props => <Signin {...props} />} />

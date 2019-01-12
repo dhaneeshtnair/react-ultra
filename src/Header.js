@@ -15,6 +15,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Tooltip from "@material-ui/core/Tooltip";
 import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
+import Badge from "@material-ui/core/Badge";
 
 const lightColor = "rgba(255, 255, 255, 0.7)";
 
@@ -65,7 +66,9 @@ function Header(props) {
             <Grid item>
               <Tooltip title="Alerts • No alters">
                 <IconButton color="inherit">
-                  <NotificationsIcon />
+                  <Badge badgeContent={17} color="secondary">
+                    <NotificationsIcon />
+                  </Badge>
                 </IconButton>
               </Tooltip>
             </Grid>
@@ -85,7 +88,6 @@ function Header(props) {
         className={classes.secondaryBar}
         color="primary"
         position="static"
-        elevation={0}
       >
         <Toolbar>
           <Grid container alignItems="center" spacing={8}>

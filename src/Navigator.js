@@ -24,21 +24,17 @@ const categories = [
   {
     id: "Develop",
     children: [
-      { id: "Authentication", icon: <PeopleIcon />, active: true },
-      { id: "Database", icon: <DnsRoundedIcon /> },
+      { id: "Students", icon: <PeopleIcon />, active: true },
+      { id: "Albums", icon: <DnsRoundedIcon /> },
       { id: "Storage", icon: <PermMediaOutlinedIcon /> },
       { id: "Pricing", icon: <PublicIcon /> },
       { id: "Functions", icon: <SettingsEthernetIcon /> },
-      { id: "ML Kit", icon: <SettingsInputComponentIcon /> }
+      { id: "MachineLearning", icon: <SettingsInputComponentIcon /> }
     ]
   },
   {
-    id: "Quality",
-    children: [
-      { id: "Analytics", icon: <SettingsIcon /> },
-      { id: "Performance", icon: <TimerIcon /> },
-      { id: "Test Lab", icon: <PhonelinkSetupIcon /> }
-    ]
+    id: "Reports",
+    children: [{ id: "DataLab", icon: <PhonelinkSetupIcon /> }]
   }
 ];
 
@@ -115,7 +111,7 @@ class Navigator extends React.Component {
               classes.itemCategory
             )}
           >
-            Paperbase
+            Data Manager
           </ListItem>
           <ListItem className={classNames(classes.item, classes.itemCategory)}>
             <ListItemIcon>
@@ -126,7 +122,7 @@ class Navigator extends React.Component {
                 primary: classes.itemPrimary
               }}
             >
-              Project Overview
+              System Actions
             </ListItemText>
           </ListItem>
           {this.state.categories.map(({ id, children }) => (

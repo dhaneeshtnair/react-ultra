@@ -12,6 +12,11 @@ import Content from "./Content";
 import Header from "./Header";
 import Signin from "./Signin";
 import Pricing from "./Pricing";
+import Checkout from "./checkout/Checkout";
+import Albums from "./albums/Albums";
+import SimpleTable from "./analytics/SimpleTable";
+import DataTable from "./datatables/DataTable";
+
 import {
   Switch,
   Link,
@@ -165,7 +170,7 @@ const styles = {
 class Paperbase extends React.Component {
   state = {
     mobileOpen: false,
-    clickId: "Authentication"
+    clickId: "Dashboard"
   };
 
   handleDrawerToggle = () => {
@@ -218,6 +223,22 @@ class Paperbase extends React.Component {
                   <Route
                     path={"/dashboard/Pricing"}
                     render={props => <Pricing {...props} />}
+                  />
+                  <Route
+                    path={"/dashboard/Students"}
+                    render={props => <Checkout {...props} />}
+                  />
+                  <Route
+                    path={"/dashboard/Albums"}
+                    render={props => <Albums {...props} />}
+                  />
+                  <Route
+                    path={"/dashboard/MachineLearning"}
+                    render={props => <SimpleTable {...props} />}
+                  />
+                  <Route
+                    path={"/dashboard/DataLab"}
+                    render={props => <DataTable {...props} />}
                   />
                 </Switch>
               </main>

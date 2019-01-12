@@ -12,7 +12,8 @@
     "react-dom": "latest",
     "react-router": "latest",
     "react-router-dom": "latest",
-    "recompose": "latest"
+    "recompose": "latest",
+    "mui-datatables": "latest"
   },
   "devDependencies": {
     "react-scripts": "1.0.0"
