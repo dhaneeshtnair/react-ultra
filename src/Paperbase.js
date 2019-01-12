@@ -163,11 +163,6 @@ class Paperbase extends React.Component {
     this.setState(state => ({ mobileOpen: !state.mobileOpen }));
   };
 
-  handleClick = ob => {
-    //alert(JSON.stringify(ob));
-    //this.setState(state => ({ mobileOpen: !state.mobileOpen }));
-  };
-
   navItemClick = clickId => {
     //alert("navclick : " + JSON.stringify(clickId));
     this.setState(state => ({ mobileOpen: !state.mobileOpen }));
@@ -187,7 +182,6 @@ class Paperbase extends React.Component {
                   PaperProps={{ style: { width: drawerWidth } }}
                   variant="temporary"
                   open={this.state.mobileOpen}
-                  onClick={this.handleClick}
                   onClose={this.handleDrawerToggle}
                 />
               </Hidden>
