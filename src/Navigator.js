@@ -113,7 +113,11 @@ class Navigator extends React.Component {
           >
             Data Manager
           </ListItem>
-          <ListItem className={classNames(classes.item, classes.itemCategory)}>
+          <ListItem
+            className={classNames(classes.item, classes.itemCategory)}
+            component={Link}
+            to={`/dashboard`}
+          >
             <ListItemIcon>
               <HomeIcon />
             </ListItemIcon>

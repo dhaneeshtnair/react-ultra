@@ -16,6 +16,8 @@ import Checkout from "./checkout/Checkout";
 import Albums from "./albums/Albums";
 import SimpleTable from "./analytics/SimpleTable";
 import DataTable from "./datatables/DataTable";
+import Landing from "./dashboard/landing";
+import Students from "./students/Students";
 
 import {
   Switch,
@@ -226,7 +228,7 @@ class Paperbase extends React.Component {
                   />
                   <Route
                     path={"/dashboard/Students"}
-                    render={props => <Checkout {...props} />}
+                    render={props => <Students {...props} />}
                   />
                   <Route
                     path={"/dashboard/Albums"}
@@ -239,6 +241,10 @@ class Paperbase extends React.Component {
                   <Route
                     path={"/dashboard/DataLab"}
                     render={props => <DataTable {...props} />}
+                  />
+                  <Route
+                    path={"/dashboard"}
+                    render={props => <Landing {...props} />}
                   />
                 </Switch>
               </main>
