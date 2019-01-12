@@ -164,11 +164,13 @@ class Paperbase extends React.Component {
   };
 
   handleClick = ob => {
-    this.setState(state => ({ mobileOpen: !state.mobileOpen }));
+    //alert(JSON.stringify(ob));
+    //this.setState(state => ({ mobileOpen: !state.mobileOpen }));
   };
 
   navItemClick = clickId => {
-    alert("navclick : " + JSON.stringify(clickId));
+    //alert("navclick : " + JSON.stringify(clickId));
+    this.setState(state => ({ mobileOpen: !state.mobileOpen }));
   };
   render() {
     const { classes } = this.props;
