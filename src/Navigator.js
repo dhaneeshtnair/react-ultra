@@ -27,7 +27,7 @@ const categories = [
       { id: "Authentication", icon: <PeopleIcon />, active: true },
       { id: "Database", icon: <DnsRoundedIcon /> },
       { id: "Storage", icon: <PermMediaOutlinedIcon /> },
-      { id: "Hosting", icon: <PublicIcon /> },
+      { id: "Pricing", icon: <PublicIcon /> },
       { id: "Functions", icon: <SettingsEthernetIcon /> },
       { id: "ML Kit", icon: <SettingsInputComponentIcon /> }
     ]
@@ -160,7 +160,7 @@ class Navigator extends React.Component {
                     this.state[childId] && classes.itemActiveItem
                   )}
                   component={Link}
-                  to={`/${childId}`}
+                  to={`/dashboard/${childId}`}
                 >
                   <ListItemIcon>{icon}</ListItemIcon>
                   <ListItemText

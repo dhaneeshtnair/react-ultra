@@ -10,7 +10,15 @@ import Hidden from "@material-ui/core/Hidden";
 import Navigator from "./Navigator";
 import Content from "./Content";
 import Header from "./Header";
-import { Link, Route, withRouter, BrowserRouter } from "react-router-dom";
+import Signin from "./Signin";
+import Pricing from "./Pricing";
+import {
+  Switch,
+  Link,
+  Route,
+  withRouter,
+  BrowserRouter
+} from "react-router-dom";
 import { compose } from "recompose";
 
 let theme = createMuiTheme({
@@ -156,7 +164,8 @@ const styles = {
 
 class Paperbase extends React.Component {
   state = {
-    mobileOpen: false
+    mobileOpen: false,
+    clickId: "Authentication"
   };
 
   handleDrawerToggle = () => {
@@ -164,8 +173,11 @@ class Paperbase extends React.Component {
   };
 
   navItemClick = clickId => {
-    //alert("navclick : " + JSON.stringify(clickId));
-    this.setState(state => ({ mobileOpen: !state.mobileOpen }));
+    // alert("navclick : " + JSON.stringify(clickId));
+    this.setState(state => ({
+      mobileOpen: !state.mobileOpen,
+      clickId: clickId.childId
+    }));
   };
   render() {
     const { classes } = this.props;
@@ -186,16 +198,28 @@ class Paperbase extends React.Component {
                 />
               </Hidden>
               <Hidden xsDown implementation="css">
-                <Navigator PaperProps={{ style: { width: drawerWidth } }} />
+                <Navigator
+                  navItemClick={this.navItemClick}
+                  PaperProps={{ style: { width: drawerWidth } }}
+                />
               </Hidden>
             </nav>
             <div className={classes.appContent}>
-              <Header onDrawerToggle={this.handleDrawerToggle} />
+              <Header
+                headerName={this.state.clickId}
+                onDrawerToggle={this.handleDrawerToggle}
+              />
               <main className={classes.mainContent}>
-                <Route
-                  path={"/Storage"}
-                  render={props => <Content {...props} />}
-                />
+                <Switch>
+                  <Route
+                    path={"/dashboard/Storage"}
+                    render={props => <Content {...props} />}
+                  />
+                  <Route
+                    path={"/dashboard/Pricing"}
+                    render={props => <Pricing {...props} />}
+                  />
+                </Switch>
               </main>
             </div>
           </div>

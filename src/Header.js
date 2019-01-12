@@ -41,7 +41,7 @@ const styles = theme => ({
 });
 
 function Header(props) {
-  const { classes, onDrawerToggle } = props;
+  const { classes, onDrawerToggle, headerName } = props;
 
   return (
     <React.Fragment>
@@ -61,11 +61,7 @@ function Header(props) {
               </Grid>
             </Hidden>
             <Grid item xs />
-            <Grid item>
-              <Typography className={classes.link} component="a" href="#">
-                Go to docs
-              </Typography>
-            </Grid>
+
             <Grid item>
               <Tooltip title="Alerts • No alters">
                 <IconButton color="inherit">
@@ -95,19 +91,10 @@ function Header(props) {
           <Grid container alignItems="center" spacing={8}>
             <Grid item xs>
               <Typography color="inherit" variant="h5">
-                Authentication
+                {headerName}
               </Typography>
             </Grid>
-            <Grid item>
-              <Button
-                className={classes.button}
-                variant="outlined"
-                color="inherit"
-                size="small"
-              >
-                Web setup
-              </Button>
-            </Grid>
+
             <Grid item>
               <Tooltip title="Help">
                 <IconButton color="inherit">
@@ -117,20 +104,6 @@ function Header(props) {
             </Grid>
           </Grid>
         </Toolbar>
-      </AppBar>
-      <AppBar
-        component="div"
-        className={classes.secondaryBar}
-        color="primary"
-        position="static"
-        elevation={0}
-      >
-        <Tabs value={0} textColor="inherit">
-          <Tab textColor="inherit" label="Users" />
-          <Tab textColor="inherit" label="Sign-in method" />
-          <Tab textColor="inherit" label="Templates" />
-          <Tab textColor="inherit" label="Usage" />
-        </Tabs>
       </AppBar>
     </React.Fragment>
   );
