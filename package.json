@@ -6,9 +6,10 @@
   "homepage": "https://codesandbox.io/s/4j7m47vlm4",
   "main": "index.js",
   "dependencies": {
-    "@date-io/date-fns": "latest",
+    "@date-io/date-fns": "1.0.1",
     "@material-ui/core": "latest",
     "@material-ui/icons": "3.0.2",
+    "date-fns": "2.0.0-alpha.21",
     "material-ui-pickers": "latest",
     "mui-datatables": "latest",
     "react": "latest",
