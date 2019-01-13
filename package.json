@@ -6,14 +6,19 @@
   "homepage": "https://codesandbox.io/s/4j7m47vlm4",
   "main": "index.js",
   "dependencies": {
+    "@date-io/date-fns": "latest",
     "@material-ui/core": "latest",
     "@material-ui/icons": "3.0.2",
+    "material-ui-pickers": "latest",
+    "mui-datatables": "latest",
     "react": "latest",
     "react-dom": "latest",
+    "react-redux": "latest",
     "react-router": "latest",
     "react-router-dom": "latest",
     "recompose": "latest",
-    "mui-datatables": "latest"
+    "redux": "latest",
+    "uuid": "^3.2.1"
   },
   "devDependencies": {
     "react-scripts": "1.0.0"

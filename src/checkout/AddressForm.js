@@ -4,97 +4,65 @@ import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
+import { connect } from "react-redux";
+import { makeAVP } from "./actions";
 
-function AddressForm() {
+function AddressForm({ avp, onUpdate }) {
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
-        Shipping address
+        Student Batch Info
       </Typography>
       <Grid container spacing={24}>
         <Grid item xs={12} sm={6}>
           <TextField
             required
-            id="firstName"
-            name="firstName"
-            label="First name"
+            id="batchId"
+            value={avp.batchId}
+            onChange={onUpdate}
+            name="Batch ID"
+            label="Batch ID"
             fullWidth
-            autoComplete="fname"
+            autoComplete="batchId"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
             required
-            id="lastName"
-            name="lastName"
-            label="Last name"
+            onChange={onUpdate}
+            value={avp.programName}
+            id="programName"
+            name="Program Name"
+            label="Program Name"
             fullWidth
-            autoComplete="lname"
+            autoComplete="programName"
           />
         </Grid>
         <Grid item xs={12}>
           <TextField
             required
-            id="address1"
-            name="address1"
-            label="Address line 1"
+            onChange={onUpdate}
+            value={avp.rollNo}
+            id="rollNo"
+            name="Roll Number"
+            label="Roll Number"
             fullWidth
-            autoComplete="billing address-line1"
+            autoComplete="rollNo"
           />
         </Grid>
-        <Grid item xs={12}>
-          <TextField
-            id="address2"
-            name="address2"
-            label="Address line 2"
-            fullWidth
-            autoComplete="billing address-line2"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="city"
-            name="city"
-            label="City"
-            fullWidth
-            autoComplete="billing address-level2"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            id="state"
-            name="state"
-            label="State/Province/Region"
-            fullWidth
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="zip"
-            name="zip"
-            label="Zip / Postal code"
-            fullWidth
-            autoComplete="billing postal-code"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="country"
-            name="country"
-            label="Country"
-            fullWidth
-            autoComplete="billing country"
-          />
-        </Grid>
+
         <Grid item xs={12}>
           <FormControlLabel
             control={
-              <Checkbox color="secondary" name="saveAddress" value="yes" />
+              <Checkbox
+                onChange={onUpdate}
+                checked={avp.lateralEntry}
+                id="lateralEntry"
+                color="secondary"
+                name="lateralEntry"
+              />
             }
-            label="Use this address for payment details"
+            label="Lateral Entry"
           />
         </Grid>
       </Grid>
@@ -102,4 +70,26 @@ function AddressForm() {
   );
 }
 
-export default AddressForm;
+const mapStateToProps = state => {
+  return {
+    avp: state.avp
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onUpdate: event => {
+      const value =
+        event.target.type == "checkbox"
+          ? event.target.checked
+          : event.target.value;
+      const av = makeAVP(event.target.id, value);
+      dispatch(av);
+    }
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(AddressForm);

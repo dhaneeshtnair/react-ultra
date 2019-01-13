@@ -11,8 +11,11 @@ import StepLabel from "@material-ui/core/StepLabel";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import AddressForm from "./AddressForm";
-import PaymentForm from "./PaymentForm";
+import StudentInfo from "./StudentInfo";
 import Review from "./Review";
+import { createPost } from "./actions/";
+import { compose } from "recompose";
+import { connect } from "react-redux";
 
 const styles = theme => ({
   appBar: {
@@ -51,16 +54,22 @@ const styles = theme => ({
   }
 });
 
-const steps = ["Shipping address", "Payment details", "Review your order"];
+const steps = [
+  "Batch Info",
+  "Student Details",
+  "Education",
+  "Documents",
+  "Review"
+];
 
-function getStepContent(step) {
+function getStepContent(step, props) {
   switch (step) {
     case 0:
-      return <AddressForm />;
+      return <AddressForm props />;
     case 1:
-      return <PaymentForm />;
+      return <StudentInfo props />;
     case 2:
-      return <Review />;
+      return <Review props />;
     default:
       throw new Error("Unknown step");
   }
@@ -72,6 +81,9 @@ class Checkout extends React.Component {
   };
 
   handleNext = () => {
+    // this.props.onAddPost(state => ({
+    //   activeStep: state.activeStep + 1
+    // }));
     this.setState(state => ({
       activeStep: state.activeStep + 1
     }));
@@ -100,7 +112,7 @@ class Checkout extends React.Component {
         <main className={classes.layout}>
           <Paper className={classes.paper}>
             <Typography component="h1" variant="h4" align="center">
-              Checkout
+              Add Student
             </Typography>
             <Stepper activeStep={activeStep} className={classes.stepper}>
               {steps.map(label => (
@@ -123,7 +135,7 @@ class Checkout extends React.Component {
                 </React.Fragment>
               ) : (
                 <React.Fragment>
-                  {getStepContent(activeStep)}
+                  {getStepContent(activeStep, this.props)}
                   <div className={classes.buttons}>
                     {activeStep !== 0 && (
                       <Button
@@ -151,9 +163,21 @@ class Checkout extends React.Component {
     );
   }
 }
-
+const mapDispatchToProps = dispatch => {
+  return {
+    onAddPost: post => {
+      dispatch(createPost(post));
+    }
+  };
+};
 Checkout.propTypes = {
   classes: PropTypes.object.isRequired
 };
-
-export default withStyles(styles)(Checkout);
+export default compose(
+  connect(
+    null,
+    mapDispatchToProps
+  ),
+  withStyles(styles)
+)(Checkout);
+//export default withStyles(styles)(Checkout);

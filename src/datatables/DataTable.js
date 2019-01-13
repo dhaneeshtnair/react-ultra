@@ -44,17 +44,17 @@ export default class DataTable extends React.Component {
       {
         name: "Salary",
         options: {
-          filter: true,
-          customBodyRender: (value, tableMeta, updateValue) => {
-            const nf = new Intl.NumberFormat("en-US", {
-              style: "currency",
-              currency: "USD",
-              minimumFractionDigits: 2,
-              maximumFractionDigits: 2
-            });
+          filter: true
+          // customBodyRender: (value, tableMeta, updateValue) => {
+          //   const nf = new Intl.NumberFormat("en-US", {
+          //     style: "currency",
+          //     currency: "USD",
+          //     minimumFractionDigits: 2,
+          //     maximumFractionDigits: 2
+          //   });
 
-            return nf.format(value);
-          }
+          //   return nf.format(value);
+          // }
         }
       },
       {
