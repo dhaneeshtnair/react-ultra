@@ -25,8 +25,8 @@ const styles = theme => ({
     width: "auto",
     marginLeft: theme.spacing.unit * 2,
     marginRight: theme.spacing.unit * 2,
-    [theme.breakpoints.up(600 + theme.spacing.unit * 2 * 2)]: {
-      width: 600,
+    [theme.breakpoints.up(800 + theme.spacing.unit * 2 * 2)]: {
+      width: 800,
       marginLeft: "auto",
       marginRight: "auto"
     }
@@ -163,21 +163,12 @@ class Checkout extends React.Component {
     );
   }
 }
-const mapDispatchToProps = dispatch => {
-  return {
-    onAddPost: post => {
-      dispatch(createPost(post));
-    }
-  };
-};
+
 Checkout.propTypes = {
   classes: PropTypes.object.isRequired
 };
 export default compose(
-  connect(
-    null,
-    mapDispatchToProps
-  ),
+  connect(),
   withStyles(styles)
 )(Checkout);
 //export default withStyles(styles)(Checkout);
